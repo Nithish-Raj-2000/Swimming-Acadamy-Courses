@@ -1,0 +1,15 @@
+/* Stackly — Legal pages (Privacy / Terms) */
+
+.legal-grid{display:grid;grid-template-columns:260px 1fr;gap:50px;align-items:flex-start;}
+.legal-toc{position:sticky;top:110px;background:var(--c-card);border:1px solid var(--c-border);border-radius:var(--r-md);padding:22px;}
+.legal-toc h4{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--c-text-soft);margin-bottom:14px;}
+.legal-toc a{display:block;font-size:13.5px;padding:8px 0;color:var(--c-text-soft);font-weight:600;border-left:2px solid transparent;padding-left:12px;transition:all .25s var(--ease);}
+.legal-toc a:hover,.legal-toc a.active{color:var(--c-primary);border-color:var(--c-primary);}
+
+.legal-body h2{font-size:22px;margin-top:42px;scroll-margin-top:110px;}
+.legal-body h2:first-child{margin-top:0;}
+.legal-body p{margin-bottom:16px;}
+.legal-body ul{margin:0 0 16px 0;padding-left:22px;display:flex;flex-direction:column;gap:8px;color:var(--c-text-soft);}
+.legal-updated{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--c-text-soft);background:var(--c-bg-alt);padding:8px 16px;border-radius:var(--r-pill);margin-bottom:30px;}
+
+@media (max-width:900px){.legal-grid{grid-template-columns:1fr;}.legal-toc{position:relative;top:0;}}

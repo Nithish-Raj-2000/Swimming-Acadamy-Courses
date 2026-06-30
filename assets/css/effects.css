@@ -1,0 +1,509 @@
+/* ===================================================================
+   Stackly — Premium Hover Effects (global, all pages + dashboards)
+   Shimmer sweeps · Glow auras · Lift + scale · Gradient borders
+   =================================================================== */
+
+/* ---------------------------------------------------------------
+   1. SHIMMER SWEEP — slides a light glint across any card
+--------------------------------------------------------------- */
+.card,.dcard,.dstat-card,.price-card,.course-card-lg,
+.facility-cat,.alumni-card,.trophy-card,.trainer-card-lg{
+  position:relative;
+  overflow:hidden;
+}
+.card::before,.dcard::before,.dstat-card::before,
+.price-card::before,.course-card-lg::before,.facility-cat::before{
+  content:"";
+  position:absolute;top:0;left:-120%;width:60%;height:100%;
+  background:linear-gradient(105deg,
+    transparent 20%,
+    rgba(0,194,255,.08) 50%,
+    transparent 80%);
+  transform:skewX(-15deg);
+  transition:none;
+  z-index:1;pointer-events:none;
+}
+.card:hover::before,.dcard:hover::before,.dstat-card:hover::before,
+.price-card:hover::before,.course-card-lg:hover::before,.facility-cat:hover::before{
+  left:160%;
+  transition:left .7s ease;
+}
+
+/* ---------------------------------------------------------------
+   2. CYAN GLOW AURA — all interactive cards
+--------------------------------------------------------------- */
+.card:hover,.dcard:hover{
+  border-color:rgba(0,194,255,.28) !important;
+  box-shadow:
+    0 0 0 1px rgba(0,194,255,.14),
+    0 20px 50px rgba(0,0,0,.55),
+    0 0 30px rgba(0,168,232,.14) !important;
+}
+
+.dstat-card:hover{
+  border-color:rgba(0,194,255,.3) !important;
+  box-shadow:
+    0 0 0 1px rgba(0,194,255,.16),
+    0 16px 44px rgba(0,0,0,.5),
+    0 0 24px rgba(0,168,232,.18) !important;
+  transform:translateY(-6px) !important;
+}
+
+/* ---------------------------------------------------------------
+   3. BUTTONS — glow only, zero transform/scale/grow on any state
+--------------------------------------------------------------- */
+.btn,
+.btn:hover,
+.btn:focus,
+.btn:active,
+.btn:visited,
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-ghost:hover,
+.btn-ghost:active,
+.btn-light:hover,
+.btn-light:active{
+  transform:none !important;
+}
+
+/* Disable the shimmer ::after — it can visually appear as growth */
+.btn::after{ display:none !important; }
+
+/* Hover: glow only */
+.btn-primary:hover{
+  box-shadow:0 6px 24px rgba(0,119,182,.4),0 0 14px rgba(0,194,255,.2) !important;
+}
+.btn-ghost:hover,.btn-light:hover{
+  box-shadow:0 4px 16px rgba(0,0,0,.25) !important;
+}
+
+/* Click: instant dim, no movement */
+.btn:active,.btn-primary:active,.btn-ghost:active,.btn-light:active{
+  opacity:.80 !important;
+  transition:opacity .05s linear !important;
+  box-shadow:none !important;
+}
+
+/* ---------------------------------------------------------------
+   4. GRADIENT BORDER ON HOVER — pricing & feature cards
+--------------------------------------------------------------- */
+.price-card{position:relative;}
+.price-card::after{
+  content:"";position:absolute;inset:0;
+  border-radius:var(--r-lg);pointer-events:none;
+  border:1.5px solid transparent;
+  background:linear-gradient(var(--c-card),var(--c-card)) padding-box,
+             linear-gradient(135deg,rgba(0,194,255,0),rgba(0,194,255,0)) border-box;
+  transition:background .4s ease;
+}
+.price-card:hover::after{
+  background:linear-gradient(var(--c-card),var(--c-card)) padding-box,
+             linear-gradient(135deg,#00C2FF,#2DD4BF,#00C2FF) border-box;
+}
+.price-card:hover{
+  transform:translateY(-10px) !important;
+  box-shadow:0 24px 60px rgba(0,0,0,.55),0 0 28px rgba(0,194,255,.18) !important;
+}
+
+/* ---------------------------------------------------------------
+   5. DASHBOARD STAT CARDS — accent left border reveal
+--------------------------------------------------------------- */
+.dstat-card::after{
+  content:"";
+  position:absolute;left:0;top:10%;height:80%;width:3px;
+  border-radius:0 3px 3px 0;
+  background:var(--grad-ocean);
+  transform:scaleY(0);transform-origin:center;
+  transition:transform .35s var(--ease);
+  z-index:2;
+}
+.dstat-card:hover::after{transform:scaleY(1);}
+
+/* ---------------------------------------------------------------
+   6. ICON BADGE — spin + glow on card hover
+--------------------------------------------------------------- */
+.card:hover .icon-badge{
+  transform:rotate(-8deg) scale(1.12) !important;
+  box-shadow:0 0 18px rgba(0,194,255,.45) !important;
+}
+
+/* ---------------------------------------------------------------
+   7. TRAINER MINIMAL GRID — zoom + cyan tint overlay
+--------------------------------------------------------------- */
+.tg-minimal-item::after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,168,232,.0),rgba(0,168,232,.18));
+  opacity:0;transition:opacity .4s ease;
+  pointer-events:none;border-radius:var(--r-md);
+}
+.tg-minimal-item:hover::after{opacity:1;}
+
+/* ---------------------------------------------------------------
+   8. MASONRY GALLERY ITEMS — brightness + cyan frame
+--------------------------------------------------------------- */
+.m-item{transition:box-shadow .35s ease,transform .35s ease;}
+.m-item:hover{
+  box-shadow:0 0 0 2px rgba(0,194,255,.55),0 16px 40px rgba(0,0,0,.5) !important;
+  transform:scale(1.02);
+  z-index:2;
+}
+
+/* ---------------------------------------------------------------
+   9. PHOTO STRIP — lift + glow
+--------------------------------------------------------------- */
+.photo-strip .ps-photo{transition:box-shadow .35s ease,transform .35s ease;}
+.photo-strip .ps-photo:hover{
+  box-shadow:0 0 0 2px rgba(0,194,255,.45),0 16px 40px rgba(0,0,0,.5) !important;
+  transform:translateY(-6px) scale(1.02);
+}
+
+/* ---------------------------------------------------------------
+   10. ACCORDION — border glow
+--------------------------------------------------------------- */
+.accordion-item{transition:border-color .3s,box-shadow .3s;}
+.accordion-item:hover{
+  border-color:rgba(0,194,255,.3) !important;
+  box-shadow:0 0 0 1px rgba(0,194,255,.1),var(--shadow-sm) !important;
+}
+
+/* ---------------------------------------------------------------
+   11. FOOTER SOCIAL ICONS — spin + glow
+--------------------------------------------------------------- */
+.footer-social a{transition:all .35s var(--ease);}
+.footer-social a:hover{
+  transform:translateY(-4px) rotate(8deg) !important;
+  box-shadow:0 6px 20px rgba(0,119,182,.4) !important;
+}
+
+/* ---------------------------------------------------------------
+   12. DASHBOARD NAV LINKS
+--------------------------------------------------------------- */
+.dash-nav a{transition:all .25s var(--ease),box-shadow .25s;}
+.dash-nav a:hover:not(.active){
+  background:rgba(0,194,255,.06) !important;
+  color:#fff !important;
+  box-shadow:inset 3px 0 0 rgba(0,194,255,.5);
+}
+
+/* ---------------------------------------------------------------
+   13. DASHBOARD TABLE ROWS
+--------------------------------------------------------------- */
+.dtable tr{transition:background .2s;}
+.dtable tr:hover td{
+  background:rgba(0,168,232,.07) !important;
+  color:var(--c-text) !important;
+}
+.dtable .action-btn{transition:all .25s var(--ease);}
+.dtable .action-btn:hover{
+  background:var(--grad-ocean) !important;
+  color:#fff !important;
+  transform:scale(1.12);
+  box-shadow:0 4px 14px rgba(0,119,182,.45) !important;
+}
+
+/* ---------------------------------------------------------------
+   14. QUICK ACTION BUTTONS (dashboard)
+--------------------------------------------------------------- */
+.qa-btn{transition:all .35s var(--ease);}
+.qa-btn:hover i{transform:scale(1.2);color:#fff !important;}
+.qa-btn:hover{
+  background:var(--grad-ocean) !important;
+  color:#fff !important;
+  transform:translateY(-5px) !important;
+  box-shadow:0 12px 30px rgba(0,119,182,.4) !important;
+}
+
+/* ---------------------------------------------------------------
+   15. BADGE — subtle pulse on hover
+--------------------------------------------------------------- */
+.badge{transition:transform .25s,box-shadow .25s;}
+.badge:hover{transform:scale(1.06);}
+
+/* ---------------------------------------------------------------
+   16. BRAND LOGO area
+--------------------------------------------------------------- */
+.brand:hover .brand-tagline{color:var(--c-accent) !important;}
+
+/* ---------------------------------------------------------------
+   17. NAV LINKS — glow on active/hover
+--------------------------------------------------------------- */
+.nav-links a:hover{
+  text-shadow:0 0 14px rgba(0,194,255,.55);
+}
+
+/* ---------------------------------------------------------------
+   18. CTA BAND BUTTONS
+--------------------------------------------------------------- */
+.cta-actions .btn{transition:all .35s var(--ease),box-shadow .35s;}
+.cta-actions .btn:hover{
+  transform:none !important;
+  box-shadow:0 10px 30px rgba(0,0,0,.4),0 0 18px rgba(0,194,255,.2) !important;
+}
+
+/* ---------------------------------------------------------------
+   19. STORY FEATURES list items
+--------------------------------------------------------------- */
+.story-features li{transition:color .2s,padding-left .2s;}
+.story-features li:hover{color:var(--c-text) !important;padding-left:6px;}
+.story-features li:hover i{color:var(--c-highlight) !important;}
+
+/* ---------------------------------------------------------------
+   20. SWITCH TOGGLES (dashboard settings)
+--------------------------------------------------------------- */
+.switch{transition:background .3s,box-shadow .3s;}
+.switch:hover{box-shadow:0 0 0 3px rgba(0,194,255,.2);}
+
+/* ---------------------------------------------------------------
+   21. MISSION / VALUES CARDS — premium glow, bar expand, shimmer
+--------------------------------------------------------------- */
+.mv-card{
+  position:relative;
+  overflow:hidden;
+  cursor:default;
+  transition:
+    transform .45s cubic-bezier(.34,1.56,.64,1),
+    box-shadow .45s ease,
+    border-color .35s ease,
+    background .35s ease !important;
+}
+
+/* Shimmer sweep */
+.mv-card::before{
+  content:"";
+  position:absolute;top:0;left:-130%;width:55%;height:100%;
+  background:linear-gradient(105deg,
+    transparent 20%,
+    rgba(0,194,255,.10) 50%,
+    transparent 80%);
+  transform:skewX(-15deg);
+  transition:none;z-index:1;pointer-events:none;
+}
+.mv-card:hover::before{
+  left:165%;
+  transition:left .65s ease;
+}
+
+/* Bottom glow sweep on hover */
+.mv-card::after{
+  content:"";
+  position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,
+    transparent,rgba(0,194,255,.8),rgba(45,212,191,.8),transparent);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .45s ease;
+  z-index:2;pointer-events:none;
+}
+.mv-card:hover::after{transform:scaleX(1);}
+
+/* Card lift + glow */
+.mv-card:hover{
+  transform:translateY(-12px) !important;
+  border-color:rgba(0,194,255,.35) !important;
+  background:var(--c-bg-alt) !important;
+  box-shadow:
+    0 0 0 1px rgba(0,194,255,.18),
+    0 28px 60px rgba(0,0,0,.55),
+    0 0 35px rgba(0,168,232,.18) !important;
+}
+
+/* Top accent bar expands on hover */
+.mv-card .mv-bar{
+  transition:width .4s cubic-bezier(.34,1.56,.64,1),
+             box-shadow .4s ease;
+}
+.mv-card:hover .mv-bar{
+  width:100% !important;
+  box-shadow:0 0 12px rgba(0,194,255,.5);
+}
+
+/* Heading colour shift */
+.mv-card h3{transition:color .3s;}
+.mv-card:hover h3{color:var(--c-accent) !important;}
+
+/* Text brightens */
+.mv-card p{transition:color .3s;}
+.mv-card:hover p{color:var(--c-text) !important;}
+
+/* ---------------------------------------------------------------
+   22. STATS STRIP — number glow + lift on hover
+--------------------------------------------------------------- */
+.medal-strip .m-stat{
+  position:relative;
+  padding:18px 24px;
+  border-radius:var(--r-md);
+  cursor:default;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1),
+             background .3s ease,box-shadow .35s ease;
+}
+.medal-strip .m-stat::after{
+  content:"";
+  position:absolute;bottom:0;left:20%;right:20%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--c-accent),transparent);
+  transform:scaleX(0);transform-origin:center;
+  transition:transform .4s ease;border-radius:2px;
+}
+.medal-strip .m-stat:hover{
+  transform:translateY(-8px);
+  background:rgba(0,168,232,.06);
+  box-shadow:0 0 0 1px rgba(0,194,255,.14),0 14px 36px rgba(0,0,0,.4);
+}
+.medal-strip .m-stat:hover::after{transform:scaleX(1);}
+.medal-strip .m-stat strong{transition:text-shadow .3s,color .3s;}
+.medal-strip .m-stat:hover strong{
+  color:var(--c-accent) !important;
+  text-shadow:0 0 20px rgba(0,194,255,.6);
+}
+.medal-strip .m-stat span{transition:color .3s;}
+.medal-strip .m-stat:hover span{color:var(--c-text) !important;}
+
+/* Accreditation strip icons */
+.medal-strip .m-stat i{transition:transform .35s cubic-bezier(.34,1.56,.64,1),filter .3s;}
+.medal-strip .m-stat:hover i{
+  transform:scale(1.3) rotate(-6deg);
+  filter:drop-shadow(0 0 8px rgba(0,194,255,.7));
+}
+
+/* ---------------------------------------------------------------
+   23. INFO LINES (.info-line) — slide-in left bar + lift
+--------------------------------------------------------------- */
+.info-line{
+  position:relative;
+  transition:background .3s ease,box-shadow .3s ease,
+             transform .35s cubic-bezier(.34,1.56,.64,1);
+  border-radius:var(--r-sm);
+  padding-left:4px;
+}
+.info-line::before{
+  content:"";
+  position:absolute;left:0;top:10%;height:80%;width:3px;
+  border-radius:3px;
+  background:var(--grad-ocean);
+  transform:scaleY(0);transform-origin:center;
+  transition:transform .35s ease;
+}
+.info-line:hover{
+  background:rgba(0,168,232,.05);
+  transform:translateX(6px);
+  box-shadow:0 4px 16px rgba(0,0,0,.2);
+}
+.info-line:hover::before{transform:scaleY(1);}
+
+/* Icon circle glow */
+.info-line i{
+  transition:box-shadow .3s,background .3s,transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.info-line:hover i{
+  background:rgba(0,168,232,.2) !important;
+  box-shadow:0 0 14px rgba(0,194,255,.45);
+  transform:scale(1.12) rotate(-6deg);
+  color:var(--c-accent) !important;
+}
+
+/* Title brightens */
+.info-line strong{transition:color .3s;}
+.info-line:hover strong{color:var(--c-accent) !important;}
+
+/* ---------------------------------------------------------------
+   24. NEWSLETTER FORM — animated border glow + button pulse
+--------------------------------------------------------------- */
+.news-form{
+  transition:border-color .35s,box-shadow .35s;
+}
+.news-form:hover{
+  border-color:rgba(0,194,255,.45) !important;
+  box-shadow:0 0 0 3px rgba(0,194,255,.08),
+             0 0 20px rgba(0,168,232,.15) !important;
+}
+.news-form:focus-within{
+  border-color:rgba(0,194,255,.65) !important;
+  box-shadow:0 0 0 4px rgba(0,194,255,.12),
+             0 0 28px rgba(0,168,232,.22) !important;
+}
+.news-form input{transition:color .2s;}
+.news-form input:focus{color:#fff !important;}
+
+/* Send button shimmer + pulse */
+.news-form button{
+  position:relative;overflow:hidden;
+  transition:opacity .25s,box-shadow .35s,transform .3s cubic-bezier(.34,1.56,.64,1) !important;
+}
+.news-form button::before{
+  content:"";
+  position:absolute;top:0;left:-120%;width:60%;height:100%;
+  background:linear-gradient(105deg,transparent 20%,rgba(255,255,255,.3) 50%,transparent 80%);
+  transform:skewX(-15deg);transition:none;
+}
+.news-form button:hover::before{
+  left:160%;transition:left .5s ease;
+}
+.news-form button:hover{
+  opacity:1 !important;
+  transform:scale(1.06);
+  box-shadow:0 0 20px rgba(0,194,255,.55),0 6px 18px rgba(0,119,182,.4) !important;
+}
+
+/* ---------------------------------------------------------------
+   25. ABOUT-SPLIT INFO ROWS — section border on hover
+--------------------------------------------------------------- */
+.split-col-left .info-line:hover,
+.split-col-right .info-line:hover{
+  padding-left:14px;
+}
+
+/* ---------------------------------------------------------------
+   26. HERO CHIPS — premium glow, lift, shimmer on hover
+--------------------------------------------------------------- */
+.hero-chip{
+  position:relative;
+  overflow:hidden;
+  cursor:default;
+  transition:
+    transform .35s cubic-bezier(.34,1.56,.64,1),
+    background .3s ease,
+    border-color .3s ease,
+    box-shadow .35s ease !important;
+}
+
+/* Shimmer sweep across chip */
+.hero-chip::before{
+  content:"";
+  position:absolute;top:0;left:-120%;width:55%;height:100%;
+  background:linear-gradient(105deg,
+    transparent 20%,rgba(255,255,255,.25) 50%,transparent 80%);
+  transform:skewX(-15deg);
+  transition:none;pointer-events:none;z-index:1;
+}
+.hero-chip:hover::before{
+  left:160%;
+  transition:left .5s ease;
+}
+
+/* Lift + cyan glow — no scale to prevent click jump */
+.hero-chip:hover{
+  background:rgba(0,168,232,.22) !important;
+  border-color:rgba(0,194,255,.60) !important;
+  color:#fff !important;
+  transform:translateY(-5px) !important;
+  box-shadow:
+    0 0 0 1px rgba(0,194,255,.25),
+    0 8px 24px rgba(0,0,0,.4),
+    0 0 18px rgba(0,168,232,.3) !important;
+}
+.hero-chip:active{
+  transform:translateY(1px) !important;
+  transition:transform .08s !important;
+}
+
+/* Icon brightens on hover */
+.hero-chip:hover i{
+  color:#fff !important;
+  filter:drop-shadow(0 0 6px rgba(0,194,255,.8));
+}
+
+/* Prevent double transitions conflicting with existing transforms */
+@media (prefers-reduced-motion:reduce){
+  .card::before,.dcard::before,.btn::after,
+  .dstat-card::before,.price-card::before{display:none;}
+}

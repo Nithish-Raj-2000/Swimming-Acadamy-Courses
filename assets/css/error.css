@@ -1,0 +1,84 @@
+/* Stackly — 404 page (non-scrollable, water bubbles) */
+
+/* Full viewport, no scroll */
+html:has(.error-page),
+body:has(.error-page){
+  height:100vh;
+  overflow:hidden;
+}
+
+.error-page{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:radial-gradient(ellipse 80% 70% at 50% 50%,#081C34 0%,#020A12 100%);
+  overflow:hidden;
+}
+
+/* Water bubble field */
+.bubble-field{position:absolute;inset:0;pointer-events:none;z-index:1;}
+
+/* Water bubbles — aquatic style */
+.water-bubble{
+  position:absolute;
+  bottom:-40px;
+  border-radius:50%;
+  background:radial-gradient(circle at 32% 28%,
+    rgba(255,255,255,.55) 0%,
+    rgba(0,194,255,.18) 40%,
+    transparent 70%);
+  border:1px solid rgba(0,194,255,.40);
+  box-shadow:
+    inset 0 2px 5px rgba(255,255,255,.22),
+    0 0 6px rgba(0,194,255,.18);
+  animation:bubbleRise linear infinite;
+}
+
+/* Content */
+.error-content{
+  position:relative;z-index:5;
+  max-width:620px;
+  width:100%;
+  text-align:center;
+  padding:0 24px;
+}
+.error-content .brand{
+  color:var(--c-text);font-size:20px;
+  display:flex;justify-content:center;
+}
+
+/* Swimmer animation */
+.swimmer-scene{margin:0 auto 6px;max-width:240px;}
+.swimmer-svg{width:100%;}
+.shadow-ellipse{fill:rgba(0,119,182,.1);}
+.swimmer-figure{animation:floatY 3.4s ease-in-out infinite;}
+.swimmer-svg .swimmer-figure circle{fill:var(--c-text);}
+.swimmer-svg .swimmer-figure path:first-of-type{fill:var(--c-primary);}
+.swimmer-svg .swimmer-figure path:last-of-type{stroke:var(--c-accent);}
+.ripple circle{
+  fill:none;stroke:rgba(0,194,255,.25);stroke-width:2;
+  animation:rippleOut 3s ease-out infinite;
+  transform-origin:100px 88px;
+}
+.ripple circle:nth-child(2){animation-delay:.5s;}
+.ripple circle:nth-child(3){animation-delay:1s;}
+@keyframes rippleOut{0%{transform:scale(.4);opacity:.8;}100%{transform:scale(1.3);opacity:0;}}
+
+/* 404 typography */
+.error-code{
+  font-size:clamp(80px,13vw,130px);
+  font-weight:900;line-height:1;margin:4px 0 0;
+  background:var(--grad-ocean);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.error-content h2{margin-top:4px;font-size:clamp(18px,2.5vw,26px);}
+.error-content p{max-width:420px;margin:8px auto 24px;font-size:15px;}
+
+/* Go Back button */
+.error-actions{
+  display:flex;gap:16px;
+  justify-content:center;
+  margin-bottom:0;
+}

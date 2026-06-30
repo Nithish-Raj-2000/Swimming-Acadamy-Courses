@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — Stackly Swimming School</title>
+<meta name="description" content="Sign in to your Stackly Swimming School account as a Student, Trainer or Admin.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 44 44%22><rect width=%2244%22 height=%2244%22 rx=%2211%22 fill=%22%230077B6%22/><circle cx=%2233%22 cy=%2212%22 r=%223.8%22 fill=%22white%22/><path d=%22M29.5,13.5 Q21,17.5 8.5,22%22 stroke=%22white%22 stroke-width=%222.8%22 stroke-linecap=%22round%22/><path d=%22M30,10.5 L38.5,16%22 stroke=%22white%22 stroke-width=%222.1%22 stroke-linecap=%22round%22/><path d=%22M8.5,22 L4,17.5%22 stroke=%22white%22 stroke-width=%222.3%22 stroke-linecap=%22round%22/><path d=%22M8.5,22 L5,26.5%22 stroke=%22white%22 stroke-width=%222.3%22 stroke-linecap=%22round%22/><path d=%22M6,33 Q10,30 14,33 Q18,36 22,33 Q26,30 30,33%22 stroke=%22rgba(255,255,255,0.7)%22 stroke-width=%221.6%22 fill=%22none%22 stroke-linecap=%22round%22/></svg>">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/effects.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/auth.css">
+</head>
+<body>
+
+<div id="preloader"><div class="loader-ring"></div></div>
+
+<header class="navbar">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-wrap"><img src="assets/images/stackly-logo.png" alt="Stackly" class="brand-logo"><small class="brand-tagline">Swimming School</small></span></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="achievements.html">Achievements</a>
+      <a href="admission.html">Admission</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="signup.html" class="btn btn-primary btn-sm"><span>Sign Up</span><i class="fa-solid fa-arrow-right"></i></a>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="auth-shell">
+  <div class="auth-visual">
+    <img src="https://images.pexels.com/photos/13097422/pexels-photo-13097422.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Dramatic underwater silhouette of a swimmer reaching toward the light">
+    <div class="bubble-field" id="authBubbles"></div>
+    <div class="auth-visual-content">
+
+      <div class="auth-swim-quote">
+        <span class="q-mark">"</span>
+        <p>Great swimmers are not born — they are made, one stroke at a time.</p>
+        <span class="q-author">— Stackly Swimming School</span>
+      </div>
+      <div class="auth-panel-tagline">Learn · Swim · Conquer Every Wave</div>
+    </div>
+  </div>
+
+  <div class="auth-form-side">
+    <div class="auth-form-wrap"><button class="auth-back-btn" onclick="history.back()"><i class="fa-solid fa-arrow-left"></i> Go Back</button>
+      <a href="index.html" class="brand"><span class="brand-wrap"><img src="assets/images/stackly-logo.png" alt="Stackly" class="brand-logo"><small class="brand-tagline">Swimming School</small></span></a>
+      <div class="auth-heading">
+        <h1>Welcome Back</h1>
+        <p>Sign in to access your dashboard and continue your swim journey.</p>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <input type="hidden" id="loginRole" value="student">
+        <div class="role-tabs">
+          <button type="button" class="active" data-role="student"><i class="fa-solid fa-graduation-cap"></i> Student</button>
+          <button type="button" data-role="trainer"><i class="fa-solid fa-whistle"></i> Trainer</button>
+          <button type="button" data-role="admin"><i class="fa-solid fa-user-shield"></i> Admin</button>
+        </div>
+
+        <div class="field">
+          <i class="fa-solid fa-envelope field-icon"></i>
+          <input type="email" id="loginEmail" placeholder=" " autocomplete="email" required>
+          <label>Email Address <span class="req">*</span></label>
+          <div class="field-msg error">Please enter a valid email address.</div>
+        </div>
+
+        <div class="field">
+          <i class="fa-solid fa-lock field-icon"></i>
+          <input type="password" id="loginPassword" placeholder=" " autocomplete="current-password" required>
+          <label>Password <span class="req">*</span></label>
+          <button type="button" class="field-toggle"><i class="fa-solid fa-eye"></i></button>
+          <div class="field-msg error">Password is required.</div>
+        </div>
+
+        <div class="checkbox-row">
+          <label class="checkbox"><input type="checkbox" id="rememberMe"> Remember Me</label>
+          <a href="forgot-password.html" class="link-accent">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block"><span>Sign In</span><i class="fa-solid fa-arrow-right"></i></button>
+      </form>
+
+      <div class="auth-divider">or continue with</div>
+      <div class="social-row">
+        <button class="social-btn"><i class="fa-brands fa-google"></i> Google</button>
+        <button class="social-btn"><i class="fa-brands fa-apple"></i> Apple</button>
+      </div>
+
+      <p class="auth-footer-note">Don't have an account? <a href="signup.html" class="link-accent">Create one</a></p>
+
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/auth.js"></script>
+<script>document.getElementById("authBubbles") && (function(){
+  var field=document.getElementById("authBubbles");
+  for(var i=0;i<14;i++){
+    var b=document.createElement("span"); b.className="bubble";
+    var s=Math.random()*18+6;
+    b.style.width=s+"px"; b.style.height=s+"px"; b.style.left=Math.random()*100+"%";
+    b.style.animationDuration=(Math.random()*9+7)+"s"; b.style.animationDelay=(Math.random()*8)+"s";
+    field.appendChild(b);
+  }
+})();</script>
+</body>
+</html>

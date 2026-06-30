@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trainer Dashboard — Stackly Swimming School</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 44 44%22><rect width=%2244%22 height=%2244%22 rx=%2211%22 fill=%22%230077B6%22/><circle cx=%2233%22 cy=%2212%22 r=%223.8%22 fill=%22white%22/><path d=%22M29.5,13.5 Q21,17.5 8.5,22%22 stroke=%22white%22 stroke-width=%222.8%22 stroke-linecap=%22round%22/><path d=%22M30,10.5 L38.5,16%22 stroke=%22white%22 stroke-width=%222.1%22 stroke-linecap=%22round%22/><path d=%22M8.5,22 L4,17.5%22 stroke=%22white%22 stroke-width=%222.3%22 stroke-linecap=%22round%22/><path d=%22M8.5,22 L5,26.5%22 stroke=%22white%22 stroke-width=%222.3%22 stroke-linecap=%22round%22/><path d=%22M6,33 Q10,30 14,33 Q18,36 22,33 Q26,30 30,33%22 stroke=%22rgba(255,255,255,0.7)%22 stroke-width=%221.6%22 fill=%22none%22 stroke-linecap=%22round%22/></svg>">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/effects.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body class="dashboard" data-requires-auth="trainer">
+
+<div id="preloader"><div class="loader-ring"></div></div>
+
+<div class="dash-shell">
+  <aside class="dash-sidebar">
+    <a href="index.html" class="brand"><span class="brand-wrap"><img src="assets/images/stackly-logo.png" alt="Stackly" class="brand-logo"><small class="brand-tagline">Trainer Panel</small></span></a>
+    <button class="dash-sidebar-close" id="sidebarClose" aria-label="Close sidebar"><i class="fa-solid fa-xmark"></i></button>
+    <nav class="dash-nav">
+      <div class="dash-nav-label">Overview</div>
+      <a href="#" data-view="overview" class="active"><i class="fa-solid fa-grid-2"></i> Overview</a>
+      <a href="#" data-view="schedule"><i class="fa-solid fa-calendar-days"></i> Schedule</a>
+
+      <div class="dash-nav-label">Coaching</div>
+      <a href="#" data-view="students"><i class="fa-solid fa-user-graduate"></i> My Students</a>
+      <a href="#" data-view="attendance"><i class="fa-solid fa-clipboard-check"></i> Attendance</a>
+      <a href="#" data-view="progress"><i class="fa-solid fa-chart-line"></i> Progress Reports</a>
+      <a href="#" data-view="courses"><i class="fa-solid fa-book"></i> Courses</a>
+      <a href="#" data-view="certificates"><i class="fa-solid fa-certificate"></i> Certificates</a>
+
+      <div class="dash-nav-label">Engage</div>
+      <a href="#" data-view="messages"><i class="fa-solid fa-comments"></i> Messages <span class="nav-count">2</span></a>
+      <a href="#" data-view="performance"><i class="fa-solid fa-trophy"></i> Performance</a>
+
+      <div class="dash-nav-label">Account</div>
+      <a href="#" data-view="profile"><i class="fa-solid fa-user"></i> Profile</a>
+    </nav>
+    <div class="dash-sidebar-foot">
+      <div class="dash-user-mini">
+        <span class="user-initial" data-user-avatar>J</span>
+        <div><strong data-user-name>Jordan Lee</strong><span data-user-role>Trainer</span></div>
+      </div>
+      <button class="logout-btn" data-logout><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+    </div>
+  </aside>
+
+  <div class="dash-main">
+    <header class="dash-topbar">
+      <button class="sidebar-toggle"><i class="fa-solid fa-bars"></i></button>
+      <div class="dash-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search students, classes..."></div>
+      <div class="topbar-actions">
+        
+        <button class="icon-btn" data-dropdown="notifPanel"><i class="fa-solid fa-bell"></i><span class="dot"></span></button>
+        <div class="topbar-profile" data-dropdown="profilePanel">
+          <span class="user-initial" data-user-avatar>J</span>
+          <span data-user-name>Jordan Lee</span>
+          <i class="fa-solid fa-chevron-down" style="font-size:11px;"></i>
+        </div>
+      </div>
+      <div class="dropdown-panel" id="notifPanel">
+        <div class="dropdown-head">Notifications</div>
+        <div class="notif-item"><i class="fa-solid fa-calendar-check"></i><div><strong>Class starting soon</strong><span>Stroke Refinement at 4:00 PM · in 45m</span></div></div>
+        <div class="notif-item"><i class="fa-solid fa-comment"></i><div><strong>New message from Avery Cole</strong><span>Re: Friday session request · 2h ago</span></div></div>
+        <div class="notif-item"><i class="fa-solid fa-clipboard-check"></i><div><strong>Attendance reminder</strong><span>Mark attendance for today's morning batch · 3h ago</span></div></div>
+      </div>
+      <div class="dropdown-panel profile-menu" id="profilePanel">
+        <div class="dropdown-head" data-user-name>Jordan Lee</div>
+        <a href="#" data-view-link="profile"><i class="fa-solid fa-user"></i> My Profile</a>
+        <a href="index.html"><i class="fa-solid fa-house"></i> Visit Website</a>
+        <a href="#" data-logout><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      </div>
+    </header>
+
+    <div class="dash-content">
+
+      <!-- OVERVIEW -->
+      <section class="dash-view active" id="view-overview">
+        <div class="view-head"><div><h1>Good Afternoon, <span data-user-firstname>Jordan</span></h1><p>You have 4 classes scheduled today.</p></div></div>
+
+        <div class="grid grid-4" style="margin-bottom:28px;">
+          <div class="dstat-card"><div class="dstat-icon bgi-blue"><i class="fa-solid fa-user-graduate"></i></div><div><h3>32</h3><p>Assigned Students</p></div></div>
+          <div class="dstat-card"><div class="dstat-icon bgi-aqua"><i class="fa-solid fa-calendar-day"></i></div><div><h3>4</h3><p>Classes Today</p></div></div>
+          <div class="dstat-card"><div class="dstat-icon bgi-green"><i class="fa-solid fa-clipboard-check"></i></div><div><h3>91%</h3><p>Avg. Attendance</p></div></div>
+          <div class="dstat-card"><div class="dstat-icon bgi-orange"><i class="fa-solid fa-certificate"></i></div><div><h3>6</h3><p>Pending Certificates</p></div></div>
+        </div>
+
+        <div class="grid grid-3" style="margin-bottom:28px;">
+          <div class="dcard" style="grid-column:span 2;">
+            <div class="dcard-head"><h3>Upcoming Classes</h3><span class="link-accent" data-view-link="schedule">Full Schedule</span></div>
+            <div class="activity-feed">
+              <div class="activity-item"><div class="activity-dot"><i class="fa-solid fa-clock"></i></div><div><strong>Stroke Refinement — 4:00 PM</strong><p>Lane 3 · 6 students</p></div></div>
+              <div class="activity-item"><div class="activity-dot"><i class="fa-solid fa-clock"></i></div><div><strong>Competitive Squad — 5:30 PM</strong><p>Olympic Lane · 4 students</p></div></div>
+              <div class="activity-item"><div class="activity-dot"><i class="fa-solid fa-clock"></i></div><div><strong>Adult Beginner — 7:00 PM</strong><p>Lane 1 · 5 students</p></div></div>
+            </div>
+          </div>
+          <div class="dcard">
+            <div class="dcard-head"><h3>Today's Attendance</h3></div>
+            <div style="display:flex;justify-content:center;"><div class="ring-mini" data-ring="91,#0077B6" style="width:140px;height:140px;"><div><strong style="font-size:26px;">91%</strong><span>Present</span></div></div></div>
+          </div>
+        </div>
+
+        <div class="dcard">
+          <div class="dcard-head"><h3>Class Performance Trend</h3></div>
+          <svg class="line-chart" data-linechart="70,74,72,80,78,85,82,88,91"></svg>
+        </div>
+      </section>
+
+      <!-- SCHEDULE -->
+      <section class="dash-view" id="view-schedule">
+        <div class="view-head"><div><h1>Schedule</h1><p>Your weekly coaching timetable.</p></div></div>
+        <div class="dcard">
+          <div class="dtable-wrap">
+            <table class="dtable">
+              <thead><tr><th>Time</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th></tr></thead>
+              <tbody>
+                <tr><td>9:00 AM</td><td>Water Babies</td><td>—</td><td>Water Babies</td><td>—</td><td>Water Babies</td></tr>
+                <tr><td>4:00 PM</td><td>Stroke Refinement</td><td>Stroke Refinement</td><td>—</td><td>Stroke Refinement</td><td>—</td></tr>
+                <tr><td>5:30 PM</td><td>Competitive Squad</td><td>—</td><td>Competitive Squad</td><td>—</td><td>Competitive Squad</td></tr>
+                <tr><td>7:00 PM</td><td>—</td><td>Adult Beginner</td><td>—</td><td>Adult Beginner</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- STUDENTS -->
+      <section class="dash-view" id="view-students">
+        <div class="view-head"><div><h1>My Students</h1><p>32 students currently assigned to you.</p></div></div>
+        <div class="dcard">
+          <div class="dtable-wrap">
+            <table class="dtable">
+              <thead><tr><th>Student</th><th>Course</th><th>Level</th><th>Attendance</th><th>Last Session</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td><div class="dcell-user"><img src="https://i.pravatar.cc/80?img=22" alt=""><div><strong>Owen Bennett</strong></div></div></td><td>Competitive Edge</td><td><span class="badge success">Advanced</span></td><td>99%</td><td>Jun 27</td><td><button class="action-btn"><i class="fa-solid fa-eye"></i></button></td></tr>
+                <tr><td><div class="dcell-user"><img src="https://i.pravatar.cc/80?img=44" alt=""><div><strong>Maya Brooks</strong></div></div></td><td>Stroke Refinement</td><td><span class="badge info">Intermediate</span></td><td>92%</td><td>Jun 26</td><td><button class="action-btn"><i class="fa-solid fa-eye"></i></button></td></tr>
+                <tr><td><div class="dcell-user"><img src="https://i.pravatar.cc/80?img=31" alt=""><div><strong>Lena Howard</strong></div></div></td><td>Adult Beginner</td><td><span class="badge warn">Beginner</span></td><td>88%</td><td>Jun 25</td><td><button class="action-btn"><i class="fa-solid fa-eye"></i></button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ATTENDANCE -->
+      <section class="dash-view" id="view-attendance">
+        <div class="view-head"><div><h1>Attendance</h1><p>Mark today's attendance for Stroke Refinement, 4:00 PM.</p></div><button class="btn btn-primary btn-sm"><i class="fa-solid fa-check"></i><span>Save Attendance</span></button></div>
+        <div class="dcard">
+          <div class="dtable-wrap">
+            <table class="dtable">
+              <thead><tr><th>Student</th><th>Present</th><th>Late</th><th>Absent</th></tr></thead>
+              <tbody>
+                <tr><td><div class="dcell-user"><img src="https://i.pravatar.cc/80?img=44" alt=""><div><strong>Maya Brooks</strong></div></div></td><td><input type="radio" name="att1" checked></td><td><input type="radio" name="att1"></td><td><input type="radio" name="att1"></td></tr>
+                <tr><td><div class="dcell-user"><img src="https://i.pravatar.cc/80?img=15" alt=""><div><strong>Tom Becker Jr.</strong></div></div></td><td><input type="radio" name="att2"></td><td><input type="radio" name="att2" checked></td><td><input type="radio" name="att2"></td></tr>
+                <tr><td><div class="dcell-user"><img src="https://i.pravatar.cc/80?img=8" alt=""><div><strong>Noah Kim</strong></div></div></td><td><input type="radio" name="att3" checked></td><td><input type="radio" name="att3"></td><td><input type="radio" name="att3"></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROGRESS REPORTS -->
+      <section class="dash-view" id="view-progress">
+        <div class="view-head"><div><h1>Progress Reports</h1><p>Update skill milestones for your students.</p></div></div>
+        <div class="grid grid-2">
+          <div class="dcard">
+            <div class="dcard-head"><h3>Maya Brooks — Stroke Refinement</h3></div>
+            <div class="progress-rows">
+              <div class="progress-row"><span>Breathing</span><div class="bar"><div style="width:92%"></div></div><strong>92%</strong></div>
+              <div class="progress-row"><span>Freestyle</span><div class="bar"><div style="width:78%"></div></div><strong>78%</strong></div>
+              <div class="progress-row"><span>Endurance</span><div class="bar"><div style="width:65%"></div></div><strong>65%</strong></div>
+            </div>
+            <button class="btn btn-ghost btn-block" style="margin-top:10px;"><span>Update Report</span></button>
+          </div>
+          <div class="dcard">
+            <div class="dcard-head"><h3>Owen Bennett — Competitive Edge</h3></div>
+            <div class="progress-rows">
+              <div class="progress-row"><span>Race Starts</span><div class="bar"><div style="width:96%"></div></div><strong>96%</strong></div>
+              <div class="progress-row"><span>Turns</span><div class="bar"><div style="width:90%"></div></div><strong>90%</strong></div>
+              <div class="progress-row"><span>Endurance</span><div class="bar"><div style="width:99%"></div></div><strong>99%</strong></div>
+            </div>
+            <button class="btn btn-ghost btn-block" style="margin-top:10px;"><span>Update Report</span></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- COURSES -->
+      <section class="dash-view" id="view-courses">
+        <div class="view-head"><div><h1>Courses</h1><p>Courses you're assigned to teach.</p></div></div>
+        <div class="grid grid-3">
+          <div class="dcard"><span class="tag" style="margin-bottom:12px;display:inline-block;">Intermediate</span><h4>Stroke Refinement</h4><p style="font-size:13px;">Ages 9–15 · 10 Weeks · 6 students</p></div>
+          <div class="dcard"><span class="tag" style="margin-bottom:12px;display:inline-block;">Advanced</span><h4>Competitive Edge</h4><p style="font-size:13px;">Ages 13–18 · 12 Weeks · 4 students</p></div>
+          <div class="dcard"><span class="tag" style="margin-bottom:12px;display:inline-block;">Beginner</span><h4>Adult Beginner</h4><p style="font-size:13px;">18+ · 8 Weeks · 5 students</p></div>
+        </div>
+      </section>
+
+      <!-- CERTIFICATES -->
+      <section class="dash-view" id="view-certificates">
+        <div class="view-head"><div><h1>Certificates</h1><p>Recommend students for certification.</p></div></div>
+        <div class="dcard">
+          <div class="dtable-wrap">
+            <table class="dtable">
+              <thead><tr><th>Student</th><th>Course</th><th>Status</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td><div class="dcell-user"><img src="https://i.pravatar.cc/80?img=22" alt=""><div><strong>Owen Bennett</strong></div></div></td><td>Competitive Edge</td><td><span class="badge info">Ready to Issue</span></td><td><button class="btn btn-sm btn-primary" data-row-action="issue"><span>Recommend</span></button></td></tr>
+                <tr><td><div class="dcell-user"><img src="https://i.pravatar.cc/80?img=44" alt=""><div><strong>Maya Brooks</strong></div></div></td><td>Stroke Refinement</td><td><span class="badge warn">In Progress</span></td><td><button class="action-btn"><i class="fa-solid fa-clock"></i></button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- MESSAGES -->
+      <section class="dash-view" id="view-messages">
+        <div class="view-head"><div><h1>Messages</h1><p>Chat with admin and parents.</p></div></div>
+        <div class="msg-shell">
+          <div class="msg-list">
+            <div class="msg-item active"><img src="https://i.pravatar.cc/80?img=65" alt=""><div><strong>Avery Cole (Admin)</strong><p>Re: Friday session request</p></div></div>
+            <div class="msg-item"><img src="https://i.pravatar.cc/80?img=5" alt=""><div><strong>Rachel Kim</strong><p>How is my daughter progressing?</p></div></div>
+          </div>
+          <div class="msg-thread">
+            <div class="msg-thread-head"><img src="https://i.pravatar.cc/80?img=65" alt=""><div><strong>Avery Cole (Admin)</strong></div></div>
+            <div class="msg-body">
+              <div class="msg-bubble in">Hi Jordan, checking on pool availability for a Friday evening session.</div>
+              <div class="msg-bubble out">Lane 3 is open after 5pm Fridays — happy to run it.</div>
+            </div>
+            <form class="msg-input-row"><input type="text" placeholder="Type a message..."><button class="btn btn-primary btn-sm" type="submit"><i class="fa-solid fa-paper-plane"></i></button></form>
+          </div>
+        </div>
+      </section>
+
+      <!-- PERFORMANCE -->
+      <section class="dash-view" id="view-performance">
+        <div class="view-head"><div><h1>Performance</h1><p>Your coaching impact this quarter.</p></div></div>
+        <div class="grid grid-2">
+          <div class="dcard">
+            <div class="dcard-head"><h3>Student Improvement Rate</h3></div>
+            <div class="bar-chart">
+              <div class="bar-col"><div class="bar-fill" data-height="60%"></div><span>Apr</span></div>
+              <div class="bar-col"><div class="bar-fill" data-height="72%"></div><span>May</span></div>
+              <div class="bar-col"><div class="bar-fill" data-height="91%"></div><span>Jun</span></div>
+            </div>
+          </div>
+          <div class="dcard">
+            <div class="dcard-head"><h3>Ratings</h3></div>
+            <div style="display:flex;justify-content:center;"><div class="ring-mini" data-ring="98,#10B981" style="width:140px;height:140px;"><div><strong style="font-size:26px;">4.9</strong><span>Avg Rating</span></div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROFILE -->
+      <section class="dash-view" id="view-profile">
+        <div class="view-head"><div><h1>My Profile</h1><p>Your trainer account details.</p></div></div>
+        <div class="dcard">
+          <div class="profile-header">
+            <span class="user-initial" data-user-avatar>J</span>
+            <div><h2 data-user-name>Jordan Lee</h2><p data-user-email>trainer@stackly.com</p><span class="badge info" data-user-role>Trainer</span></div>
+          </div>
+          <div class="grid grid-3" style="padding:0 30px 30px;">
+            <div><strong style="display:block;font-size:13px;color:var(--c-text-soft);">Specialty</strong><span>Stroke Refinement & Competitive</span></div>
+            <div><strong style="display:block;font-size:13px;color:var(--c-text-soft);">Certification</strong><span>Level 3 Stroke Mechanics</span></div>
+            <div><strong style="display:block;font-size:13px;color:var(--c-text-soft);">Joined</strong><span>August 2018</span></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/auth.js"></script>
+<script src="assets/js/dashboard.js"></script>
+<script>
+document.querySelectorAll("[data-view-link]").forEach(function(el){
+  el.addEventListener("click",function(e){
+    e.preventDefault();
+    document.querySelector('.dash-nav a[data-view="'+el.getAttribute("data-view-link")+'"]').click();
+  });
+});
+</script>
+</body>
+</html>

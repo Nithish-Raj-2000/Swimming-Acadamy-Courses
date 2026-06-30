@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Not Found — Stackly Swimming School</title>
+<meta name="description" content="The page you're looking for has drifted out to sea.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 44 44%22><rect width=%2244%22 height=%2244%22 rx=%2211%22 fill=%22%230077B6%22/><circle cx=%2233%22 cy=%2212%22 r=%223.8%22 fill=%22white%22/><path d=%22M29.5,13.5 Q21,17.5 8.5,22%22 stroke=%22white%22 stroke-width=%222.8%22 stroke-linecap=%22round%22/><path d=%22M30,10.5 L38.5,16%22 stroke=%22white%22 stroke-width=%222.1%22 stroke-linecap=%22round%22/><path d=%22M8.5,22 L4,17.5%22 stroke=%22white%22 stroke-width=%222.3%22 stroke-linecap=%22round%22/><path d=%22M8.5,22 L5,26.5%22 stroke=%22white%22 stroke-width=%222.3%22 stroke-linecap=%22round%22/></svg>">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/effects.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/error.css">
+</head>
+<body>
+
+<div class="error-page">
+  <div class="bubble-field" id="errorBubbles"></div>
+
+  <div class="error-content">
+    <a href="index.html" class="brand" style="justify-content:center;margin-bottom:28px;">
+      <span class="brand-wrap"><img src="assets/images/stackly-logo.png" alt="Stackly" class="brand-logo"><small class="brand-tagline">Swimming School</small></span>
+    </a>
+
+    <div class="swimmer-scene">
+      <svg viewBox="0 0 200 120" class="swimmer-svg">
+        <ellipse cx="100" cy="92" rx="90" ry="10" class="shadow-ellipse"/>
+        <g class="swimmer-figure">
+          <circle cx="58" cy="58" r="11" fill="var(--c-text)"/>
+          <path d="M68 60 C95 48 130 50 150 64 C158 68 150 76 140 72 C118 64 90 64 70 70 Z" fill="#0077B6"/>
+          <path d="M70 70 C60 78 50 84 40 80" stroke="#0077B6" stroke-width="8" fill="none" stroke-linecap="round"/>
+          <path d="M150 64 C160 58 168 50 166 42" stroke="#00C2FF" stroke-width="8" fill="none" stroke-linecap="round"/>
+        </g>
+        <g class="ripple"><circle cx="100" cy="88" r="14"/><circle cx="100" cy="88" r="26"/><circle cx="100" cy="88" r="38"/></g>
+      </svg>
+    </div>
+
+    <h1 class="error-code">404</h1>
+    <h2>Looks Like This Page Swam Away</h2>
+    <p>The page you're looking for has drifted out of the pool.<br>Let's get you back to dry land.</p>
+
+    <div class="error-actions" style="justify-content:center;">
+      <button onclick="history.back()" class="btn btn-primary btn-lg">
+        <i class="fa-solid fa-arrow-left"></i><span>Go Back</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/main.js"></script>
+<script>
+(function(){
+  var field = document.getElementById("errorBubbles");
+  if(!field) return;
+  for(var i = 0; i < 22; i++){
+    var b = document.createElement("span");
+    b.className = "bubble water-bubble";
+    var s = Math.random() * 24 + 8;
+    b.style.cssText = [
+      "width:"+s+"px",
+      "height:"+s+"px",
+      "left:"+(Math.random()*100)+"%",
+      "animation-duration:"+(Math.random()*10+7)+"s",
+      "animation-delay:"+(Math.random()*12)+"s"
+    ].join(";");
+    field.appendChild(b);
+  }
+})();
+</script>
+</body>
+</html>

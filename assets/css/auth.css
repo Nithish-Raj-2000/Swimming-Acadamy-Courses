@@ -1,0 +1,224 @@
+/* Stackly — Auth pages (login, signup, forgot, reset) shared layout */
+
+/* Auth navbar — 4px taller + tagline always visible */
+.auth-shell ~ * .navbar,
+.navbar{/* applies globally */}
+.auth-shell .navbar,
+body:has(.auth-shell) .navbar{
+  padding:14px 0 26px;  /* less top padding — content sits higher */
+}
+body:has(.auth-shell) .brand-tagline{
+  color:rgba(255,255,255,.85) !important;
+  -webkit-text-fill-color:rgba(255,255,255,.85) !important;
+  font-size:11px !important;
+  letter-spacing:.14em !important;
+}
+body:has(.auth-shell) .brand-logo{
+  filter:brightness(0) invert(1)
+         drop-shadow(0 0 3px #00C2FF)
+         drop-shadow(0 0 8px rgba(0,194,255,.4)) !important;
+}
+
+/* Auth shell — sits exactly in the space below the fixed navbar */
+.auth-shell{
+  display:grid;
+  grid-template-columns:1.05fr 1fr;
+  height:calc(100vh - var(--nav-h));  /* fill remaining viewport exactly */
+  margin-top:var(--nav-h);            /* start below navbar */
+  overflow:hidden;                     /* no page-level scroll */
+}
+
+/* Brand panel — fills full shell height, never scrolls */
+.auth-visual{
+  position:relative;
+  height:100%;
+  overflow:hidden;
+  background:var(--grad-deep);
+}
+
+/* Swimming photo — fills full panel */
+.auth-visual img{
+  width:100%;height:100%;
+  object-fit:cover;
+  position:absolute;inset:0;
+  opacity:.75;
+  filter:brightness(1.1) saturate(1.1);
+}
+.auth-visual-content{height:100%;}
+
+/* Overlay to keep text readable over brighter photo */
+.auth-visual::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(2,27,43,.50) 0%,rgba(0,88,150,.40) 60%,rgba(2,27,43,.70) 100%);
+}
+
+.auth-visual-content{
+  position:relative;z-index:3;
+  height:100%;
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+  padding:50px;color:#fff;
+}
+
+/* ---- Auth brand panel — logo centered ---- */
+.auth-visual-content{
+  justify-content:space-between;
+  align-items:center;
+  padding:28px 36px 36px !important;
+}
+/* Brand logo — match home navbar exactly */
+.auth-panel-brand{color:#fff;text-decoration:none;}
+.auth-panel-brand .brand-logo{
+  height:36px !important;
+  width:auto !important;
+  filter:brightness(0) invert(1)
+         drop-shadow(0 0 3px #00C2FF)
+         drop-shadow(0 0 8px rgba(0,194,255,.45)) !important;
+}
+.auth-panel-brand .brand-tagline{
+  font-size:10px !important;
+  letter-spacing:.16em;
+  color:rgba(255,255,255,.75) !important;
+  -webkit-text-fill-color:rgba(255,255,255,.75) !important;
+}
+.auth-panel-brand .brand-wrap{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  text-align:center;
+}
+
+/* ---- Swimming quote card — centred in panel ---- */
+.auth-swim-quote{
+  margin-top:auto;
+  margin-bottom:auto;
+  text-align:center;
+  padding:28px 26px;
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(0,194,255,.22);
+  border-radius:var(--r-lg);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+}
+.auth-swim-quote .q-mark{
+  font-size:64px;line-height:.6;
+  color:var(--c-accent);
+  font-family:Georgia,serif;
+  display:block;
+  margin-bottom:18px;
+  opacity:.8;
+}
+.auth-swim-quote p{
+  font-size:17px;font-style:italic;
+  color:rgba(255,255,255,.92);
+  line-height:1.7;margin-bottom:16px;
+  text-shadow:0 1px 8px rgba(0,0,0,.6);
+}
+.auth-swim-quote .q-author{
+  font-size:12px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--c-accent);
+}
+
+/* ---- Panel tagline at bottom ---- */
+.auth-panel-tagline{
+  text-align:center;
+  color:rgba(255,255,255,.45);
+  font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:700;
+}
+
+/* ---- Water bubble appearance ---- */
+.auth-visual .bubble-field{z-index:2;}
+.auth-visual .bubble{
+  background:radial-gradient(circle at 35% 25%,
+    rgba(255,255,255,.55) 0%,
+    rgba(0,194,255,.18) 35%,
+    transparent 70%) !important;
+  border:1px solid rgba(0,194,255,.35) !important;
+  box-shadow:
+    inset 0 2px 6px rgba(255,255,255,.2),
+    0 0 8px rgba(0,194,255,.2) !important;
+}
+
+.auth-quote{display:none;}
+.auth-stats-row{display:none;}
+
+.auth-form-side{
+  display:flex;
+  align-items:flex-start;    /* content anchors to top — overflow-y:auto works */
+  justify-content:center;
+  padding:40px 40px 60px;
+  background:var(--c-bg);
+  height:100%;
+  overflow-y:auto;
+  box-sizing:border-box;
+}
+.auth-form-wrap{
+  width:100%;max-width:440px;
+  margin-top:auto;
+  margin-bottom:auto;
+}
+
+/* Go Back button */
+.auth-back-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:none;border:none;cursor:pointer;
+  font-family:var(--f-btn);font-size:13.5px;font-weight:700;
+  color:var(--c-text-soft);padding:0;margin-bottom:24px;
+  transition:color .25s,gap .25s;
+}
+.auth-back-btn:hover{color:var(--c-accent);gap:12px;}
+.auth-back-btn i{font-size:12px;}
+.auth-form-wrap .brand{margin-bottom:36px;color:var(--c-text);}
+.auth-form-wrap .brand-mark{background:var(--grad-ocean);}
+.auth-heading h1{font-size:30px;margin-bottom:8px;}
+.auth-heading p{margin-bottom:34px;}
+.auth-divider{display:flex;align-items:center;gap:14px;margin:26px 0;color:var(--c-text-soft);font-size:12.5px;}
+.auth-divider::before,.auth-divider::after{content:"";flex:1;height:1px;background:var(--c-border);}
+.social-row{display:flex;gap:14px;margin-bottom:10px;}
+.social-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;padding:13px;border:1.5px solid var(--c-border);border-radius:var(--r-sm);font-weight:700;font-size:13.5px;color:var(--c-text);background:var(--c-card);transition:all .3s var(--ease);}
+.social-btn:hover{border-color:var(--c-accent);transform:translateY(-2px);}
+.auth-footer-note{text-align:center;margin-top:24px;font-size:14px;color:var(--c-text-soft);}
+
+.success-box{display:none;align-items:flex-start;gap:14px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.3);border-radius:var(--r-sm);padding:18px;margin-bottom:24px;}
+.success-box i{color:var(--c-success);font-size:20px;margin-top:2px;}
+.success-box strong{display:block;font-size:14px;margin-bottom:3px;}
+.success-box p{margin:0;font-size:13px;}
+
+/* Step transition animation for two-step reset flow */
+.step-enter{animation:stepIn .38s var(--ease) both;}
+@keyframes stepIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+/* Mini quote cards below the main quote in the brand panel */
+.auth-quotes-stack{display:flex;flex-direction:column;gap:10px;width:100%;}
+.auth-mini-quote{display:flex;align-items:flex-start;gap:12px;background:rgba(0,0,0,.28);border:1px solid rgba(0,194,255,.18);border-radius:var(--r-sm);padding:13px 16px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+.auth-mini-quote i{color:var(--c-accent);font-size:14px;margin-top:2px;flex-shrink:0;}
+.auth-mini-quote span{font-size:13px;color:rgba(255,255,255,.85);line-height:1.5;font-style:italic;}
+@media(max-width:980px){.auth-quotes-stack{display:none;}}
+@media(max-width:480px){.auth-swim-quote{padding:16px 14px;}.auth-swim-quote p{font-size:14px;}}
+
+@media (max-width:980px){
+  .auth-shell{
+    grid-template-columns:1fr;
+    height:auto;
+    overflow:visible;
+  }
+  .auth-visual{height:240px;position:relative;top:0;}
+  .auth-visual-content{padding:20px !important;}
+  .auth-form-side{height:auto;overflow-y:visible;padding:28px 22px;}
+}
+@media (max-width:640px){
+  .auth-visual{height:200px;}
+  .auth-form-side{padding:24px 18px 36px;}
+  .auth-form-wrap{max-width:100%;}
+  .auth-heading h1{font-size:26px;}
+}
+@media (max-width:480px){
+  .auth-visual{height:170px;}
+  .auth-swim-quote{padding:20px 18px;}
+  .auth-swim-quote p{font-size:15px;}
+  .auth-form-side{padding:20px 14px 30px;}
+  .auth-heading h1{font-size:24px;}
+  .auth-heading p{font-size:14px;}
+  .auth-divider{margin:18px 0;}
+  .auth-footer-note{font-size:13px;}
+}

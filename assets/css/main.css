@@ -72,7 +72,7 @@
 }
 
 *,*::before,*::after{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
 body{
   margin:0;
   font-family:var(--f-body);
@@ -85,7 +85,7 @@ body{
 }
 img{
   max-width:100%;display:block;
-  filter:brightness(1.45) contrast(1.08) saturate(1.25);
+  filter:brightness(1.1) contrast(1.05) saturate(1.15);
 }
 /* Hero/auth images — keep dark so nav text stays readable */
 .hero-media img,.auth-visual img{
@@ -439,6 +439,9 @@ p{margin:0 0 1em;color:var(--c-text-soft);}
   border-radius:8px;z-index:9999;
 }
 .skip-link:focus{left:10px;}
+
+/* ---------- Program section anchor offset ---------- */
+#prog-kids,#prog-adults,#prog-family,#prog-competitive{scroll-margin-top:104px;}
 
 /* ---------- Utility ---------- */
 .text-center{text-align:center;}

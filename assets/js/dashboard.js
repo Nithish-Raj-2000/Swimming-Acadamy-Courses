@@ -38,8 +38,18 @@
       document.querySelectorAll(".view-title").forEach(function(t){ t.textContent=link.textContent.trim(); });
       if(sidebar) sidebar.classList.remove("open");
       animateBars();
+      history.replaceState(null,"","#"+target);
     });
   });
+
+  /* Restore active view from URL hash (back-navigation from 404) */
+  (function(){
+    var hash=location.hash.replace("#","");
+    if(hash){
+      var link=document.querySelector('.dash-nav a[data-view="'+hash+'"]');
+      if(link) link.click();
+    }
+  })();
 
   /* Dropdown panels (notifications / profile) */
   document.querySelectorAll("[data-dropdown]").forEach(function(trigger){

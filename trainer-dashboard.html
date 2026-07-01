@@ -17,7 +17,7 @@
 
 <div class="dash-shell">
   <aside class="dash-sidebar">
-    <a href="index.html" class="brand"><span class="brand-wrap"><img src="assets/images/stackly-logo.webp" alt="Stackly" class="brand-logo"><small class="brand-tagline">Trainer Panel</small></span></a>
+    <a href="trainer-dashboard.html" class="brand"><span class="brand-wrap"><img src="assets/images/stackly-logo.webp" alt="Stackly" class="brand-logo"><small class="brand-tagline">Trainer Panel</small></span></a>
     <button class="dash-sidebar-close" id="sidebarClose" aria-label="Close sidebar"><i class="fa-solid fa-xmark"></i></button>
     <nav class="dash-nav">
       <div class="dash-nav-label">Overview</div>
@@ -50,7 +50,7 @@
   <div class="dash-main">
     <header class="dash-topbar">
       <button class="sidebar-toggle"><i class="fa-solid fa-bars"></i></button>
-      <div class="dash-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search students, classes..."></div>
+      <div class="topbar-email"><i class="fa-solid fa-envelope"></i><span data-user-email>—</span></div>
       <div class="topbar-actions">
         
         <button class="icon-btn" data-dropdown="notifPanel"><i class="fa-solid fa-bell"></i><span class="dot"></span></button>
@@ -278,6 +278,9 @@ document.querySelectorAll("[data-view-link]").forEach(function(el){
     e.preventDefault();
     document.querySelector('.dash-nav a[data-view="'+el.getAttribute("data-view-link")+'"]').click();
   });
+});
+document.querySelectorAll('button:not([data-logout]):not([data-pane]):not([data-dropdown]):not([type="submit"]):not(.sidebar-toggle):not(.dash-sidebar-close):not(.back-to-top):not(.switch):not([data-row-action])').forEach(function(btn){
+  btn.addEventListener('click',function(){ window.location.href='404.html'; });
 });
 </script>
 </body>

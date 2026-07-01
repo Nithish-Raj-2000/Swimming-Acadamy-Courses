@@ -63,6 +63,7 @@
 
   /* Redirect all non-functional links/buttons → 404 */
   document.querySelectorAll('a[href="#"]').forEach(function(a){
+    if(a.hasAttribute("data-view")||a.hasAttribute("data-view-link")||a.hasAttribute("data-logout")) return;
     a.addEventListener("click",function(e){
       e.preventDefault();
       window.location.href="404.html";

@@ -18,7 +18,7 @@
 <div class="dash-shell">
   <!-- SIDEBAR -->
   <aside class="dash-sidebar">
-    <a href="index.html" class="brand"><span class="brand-wrap"><img src="assets/images/stackly-logo.webp" alt="Stackly" class="brand-logo"><small class="brand-tagline">Admin Panel</small></span></a>
+    <a href="admin-dashboard.html" class="brand"><span class="brand-wrap"><img src="assets/images/stackly-logo.webp" alt="Stackly" class="brand-logo"><small class="brand-tagline">Admin Panel</small></span></a>
     <button class="dash-sidebar-close" id="sidebarClose" aria-label="Close sidebar"><i class="fa-solid fa-xmark"></i></button>
     <nav class="dash-nav">
       <div class="dash-nav-label">Overview</div>
@@ -53,7 +53,7 @@
   <div class="dash-main">
     <header class="dash-topbar">
       <button class="sidebar-toggle"><i class="fa-solid fa-bars"></i></button>
-      <div class="dash-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search students, trainers, payments..."></div>
+      <div class="topbar-email"><i class="fa-solid fa-envelope"></i><span data-user-email>—</span></div>
       <div class="topbar-actions">
         
         <button class="icon-btn" data-dropdown="notifPanel"><i class="fa-solid fa-bell"></i><span class="dot"></span></button>
@@ -97,11 +97,11 @@
 
         <div class="grid grid-2" style="margin-bottom:28px;">
           <div class="dcard">
-            <div class="dcard-head"><h3>Revenue Trend (12 mo)</h3><a href="404.html" class="link-accent">View Report</a></div>
+            <div class="dcard-head"><h3>Revenue Trend (12 mo)</h3></div>
             <svg class="line-chart" data-linechart="22,26,24,30,28,34,33,38,36,42,45,48"></svg>
           </div>
           <div class="dcard">
-            <div class="dcard-head"><h3>New Enrollments</h3><a href="404.html" class="link-accent">View Report</a></div>
+            <div class="dcard-head"><h3>New Enrollments</h3></div>
             <div class="bar-chart">
               <div class="bar-col"><div class="bar-fill" data-height="55%"></div><span>Jan</span></div>
               <div class="bar-col"><div class="bar-fill" data-height="70%"></div><span>Feb</span></div>
@@ -115,7 +115,7 @@
 
         <div class="grid grid-3">
           <div class="dcard" style="grid-column:span 2;">
-            <div class="dcard-head"><h3>Recent Activity</h3><a href="404.html" class="link-accent">View All</a></div>
+            <div class="dcard-head"><h3>Recent Activity</h3></div>
             <div class="activity-feed">
               <div class="activity-item"><div class="activity-dot"><i class="fa-solid fa-user-plus"></i></div><div><strong>New student enrolled</strong><p>Jake Sullivan joined Kids Learn-to-Swim · 12 min ago</p></div></div>
               <div class="activity-item"><div class="activity-dot"><i class="fa-solid fa-certificate"></i></div><div><strong>Certificate issued</strong><p>Owen Bennett completed Competitive Edge · 1h ago</p></div></div>
@@ -301,7 +301,7 @@
               <div class="dcard-head"><h3>General</h3></div>
               <div class="field"><i class="fa-solid fa-user field-icon"></i><input type="text" value="Avery Cole" placeholder=" "><label>Full Name</label></div>
               <div class="field"><i class="fa-solid fa-envelope field-icon"></i><input type="email" value="admin@stackly.com" placeholder=" "><label>Email</label></div>
-              <button class="btn btn-primary">Save Changes</button>
+              <button class="btn btn-primary"><span>Save Changes</span></button>
             </div>
             <div class="dcard settings-pane" id="paneNotif">
               <div class="dcard-head"><h3>Notification Preferences</h3></div>
@@ -313,7 +313,7 @@
               <div class="dcard-head"><h3>Security</h3></div>
               <div class="field"><i class="fa-solid fa-lock field-icon"></i><input type="password" placeholder=" "><label>Current Password</label></div>
               <div class="field"><i class="fa-solid fa-lock field-icon"></i><input type="password" placeholder=" "><label>New Password</label></div>
-              <button class="btn btn-primary">Update Password</button>
+              <button class="btn btn-primary"><span>Update Password</span></button>
             </div>
             <div class="dcard settings-pane" id="paneAppearance">
               <div class="dcard-head"><h3>Appearance</h3></div>
@@ -368,9 +368,10 @@ document.getElementById("announceForm").addEventListener("submit",function(e){
 });
 var dmSwitch=document.getElementById("darkModeSwitch");
   if(dmSwitch){ dmSwitch.classList.add("on"); }
-  if(dmSwitch){ dmSwitch.classList.add("on"); }
-  
-}
+
+document.querySelectorAll('button:not([data-logout]):not([data-pane]):not([data-dropdown]):not([type="submit"]):not(.sidebar-toggle):not(.dash-sidebar-close):not(.back-to-top):not(.switch):not([data-row-action])').forEach(function(btn){
+  btn.addEventListener('click',function(){ window.location.href='404.html'; });
+});
 </script>
 </body>
 </html>

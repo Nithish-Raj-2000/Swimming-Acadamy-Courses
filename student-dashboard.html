@@ -17,7 +17,7 @@
 
 <div class="dash-shell">
   <aside class="dash-sidebar">
-    <a href="index.html" class="brand"><span class="brand-wrap"><img src="assets/images/stackly-logo.webp" alt="Stackly" class="brand-logo"><small class="brand-tagline">Student Panel</small></span></a>
+    <a href="student-dashboard.html" class="brand"><span class="brand-wrap"><img src="assets/images/stackly-logo.webp" alt="Stackly" class="brand-logo"><small class="brand-tagline">Student Panel</small></span></a>
     <button class="dash-sidebar-close" id="sidebarClose" aria-label="Close sidebar"><i class="fa-solid fa-xmark"></i></button>
     <nav class="dash-nav">
       <div class="dash-nav-label">Overview</div>
@@ -49,7 +49,7 @@
   <div class="dash-main">
     <header class="dash-topbar">
       <button class="sidebar-toggle"><i class="fa-solid fa-bars"></i></button>
-      <div class="dash-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search courses, certificates..."></div>
+      <div class="topbar-email"><i class="fa-solid fa-envelope"></i><span data-user-email>—</span></div>
       <div class="topbar-actions">
         
         <button class="icon-btn" data-dropdown="notifPanel"><i class="fa-solid fa-bell"></i><span class="dot"></span></button>
@@ -179,7 +179,7 @@
           <div class="dcard text-center"><div class="icon-badge" style="margin:0 auto 14px;"><svg width="26" height="26" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="33" cy="12" r="3.8" fill="white"/><path d="M29.5,13.5 Q21,17.5 8.5,22" stroke="white" stroke-width="2.8" stroke-linecap="round"/><path d="M30,10.5 L38.5,16" stroke="white" stroke-width="2.1" stroke-linecap="round"/><path d="M23,17 C20.5,11.5 17.5,10 14.5,11" stroke="white" stroke-width="1.9" stroke-linecap="round"/><path d="M8.5,22 L4,17.5" stroke="white" stroke-width="2.3" stroke-linecap="round"/><path d="M8.5,22 L5,26.5" stroke="white" stroke-width="2.3" stroke-linecap="round"/><path d="M6,33 Q10,30 14,33 Q18,36 22,33 Q26,30 30,33 Q34,36 38,33" stroke="rgba(255,255,255,0.7)" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg></div><h4 style="font-size:14px;">First Splash</h4><p style="font-size:12px;">Completed first class</p></div>
           <div class="dcard text-center"><div class="icon-badge" style="margin:0 auto 14px;background:var(--grad-aqua);"><i class="fa-solid fa-lungs"></i></div><h4 style="font-size:14px;">Breath Master</h4><p style="font-size:12px;">90%+ breathing control</p></div>
           <div class="dcard text-center"><div class="icon-badge" style="margin:0 auto 14px;background:linear-gradient(135deg,#F59E0B,#fbbf24);"><i class="fa-solid fa-fire"></i></div><h4 style="font-size:14px;">18 Day Streak</h4><p style="font-size:12px;">Consistent attendance</p></div>
-          <div class="dcard text-center" style="opacity:.45;"><div class="icon-badge" style="margin:0 auto 14px;background:var(--c-border);"><i class="fa-solid fa-trophy"></i></div><h4 style="font-size:14px;">Race Ready</h4><p style="font-size:12px;">Locked · Reach 95% endurance</p></div>
+          <div class="dcard text-center"><div class="icon-badge" style="margin:0 auto 14px;background:linear-gradient(135deg,#7C3AED,#1D4ED8);"><i class="fa-solid fa-trophy"></i></div><h4 style="font-size:14px;">Race Ready</h4><p style="font-size:12px;">Locked · Reach 95% endurance</p></div>
         </div>
       </section>
 
@@ -296,6 +296,9 @@ document.querySelectorAll("[data-view-link]").forEach(function(el){
     e.preventDefault();
     document.querySelector('.dash-nav a[data-view="'+el.getAttribute("data-view-link")+'"]').click();
   });
+});
+document.querySelectorAll('button:not([data-logout]):not([data-pane]):not([data-dropdown]):not([type="submit"]):not(.sidebar-toggle):not(.dash-sidebar-close):not(.back-to-top):not(.switch):not([data-row-action])').forEach(function(btn){
+  btn.addEventListener('click',function(){ window.location.href='404.html'; });
 });
 </script>
 </body>

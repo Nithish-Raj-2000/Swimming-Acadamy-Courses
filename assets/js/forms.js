@@ -9,7 +9,7 @@
     if (!t) return "Full name is required.";
     if (t.length < 2) return "Name must be at least 2 characters.";
     if (t.length > 50) return "Name must not exceed 50 characters.";
-    if (!/^[A-Za-z\s'\-]+$/.test(t)) return "Name can only contain letters, spaces, hyphens and apostrophes.";
+    if (!/^[A-Za-z\s]+$/.test(t)) return "Name can only contain letters and spaces.";
     return null;
   }
   function validateEmail(v) {
@@ -198,8 +198,9 @@
       if (!ok) {
         var first = cf.querySelector(".has-error");
         if (first) {
-          var inp = first.querySelector("input,select,textarea");
-          if (inp) { inp.focus(); inp.scrollIntoView({ behavior: "smooth", block: "center" }); }
+          var inp = first.querySelector("input,select:not([hidden]),textarea");
+          if (inp) inp.focus(); else { var tr=first.querySelector(".cs-trigger"); if(tr) tr.focus(); }
+          first.scrollIntoView({ behavior: "smooth", block: "center" });
         }
         return;
       }
@@ -271,8 +272,9 @@
       if (!ok) {
         var first = af.querySelector(".has-error");
         if (first) {
-          var inp = first.querySelector("input,select");
-          if (inp) { inp.focus(); first.scrollIntoView({ behavior: "smooth", block: "center" }); }
+          var inp = first.querySelector("input,select:not([hidden])");
+          if (inp) inp.focus(); else { var tr=first.querySelector(".cs-trigger"); if(tr) tr.focus(); }
+          first.scrollIntoView({ behavior: "smooth", block: "center" });
         }
         return;
       }

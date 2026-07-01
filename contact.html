@@ -85,15 +85,17 @@
             <div class="field"><i class="fa-solid fa-user field-icon"></i><input type="text" id="cName" placeholder=" " autocomplete="name"><label>Full Name <span class="req">*</span></label><div class="field-msg error">Full name is required.</div></div>
             <div class="field"><i class="fa-solid fa-envelope field-icon"></i><input type="email" id="cEmail" placeholder=" " autocomplete="email"><label>Email Address <span class="req">*</span></label><div class="field-msg error">Enter a valid email address.</div></div>
           </div>
-          <div class="field">
+          <div class="field cs-field">
             <i class="fa-solid fa-tag field-icon"></i>
-            <select id="cSubject">
-              <option value="" disabled selected>Subject *</option>
-              <option>General Inquiry</option>
-              <option>Admission Question</option>
-              <option>Facility Tour Request</option>
-              <option>Trainer Application</option>
-            </select>
+            <div class="cs-trigger" tabindex="0"><span class="cs-val">Subject *</span><i class="fa-solid fa-chevron-down cs-arrow"></i></div>
+            <ul class="cs-list">
+              <li class="cs-item cs-placeholder" data-value="">Subject *</li>
+              <li class="cs-item" data-value="General Inquiry">General Inquiry</li>
+              <li class="cs-item" data-value="Admission Question">Admission Question</li>
+              <li class="cs-item" data-value="Facility Tour Request">Facility Tour Request</li>
+              <li class="cs-item" data-value="Trainer Application">Trainer Application</li>
+            </ul>
+            <select id="cSubject" hidden><option value="" disabled selected></option><option value="General Inquiry">General Inquiry</option><option value="Admission Question">Admission Question</option><option value="Facility Tour Request">Facility Tour Request</option><option value="Trainer Application">Trainer Application</option></select>
             <div class="field-msg error">Please select a subject.</div>
           </div>
           <div class="field"><textarea id="cMsg" placeholder=" " rows="5"></textarea><label>Your Message <span class="req">*</span></label><div class="field-msg error">Message must be at least 10 characters.</div></div>
@@ -114,12 +116,12 @@
         <div class="footer-social"><a href="404.html"><i class="fa-brands fa-facebook-f"></i></a><a href="404.html"><i class="fa-brands fa-instagram"></i></a><a href="404.html"><i class="fa-brands fa-youtube"></i></a><a href="404.html"><i class="fa-brands fa-x-twitter"></i></a></div>
       </div>
       <div class="footer-col"><h4>Site</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="programs.html">Programs</a></li><li><a href="achievements.html">Achievements</a></li><li><a href="admission.html">Admission</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div class="footer-col"><h4>Account</h4><ul><li><a href="login.html">Login</a></li><li><a href="signup.html">Sign Up</a></li></ul></div>
+      <div class="footer-col"><h4>Programs</h4><ul><li><a href="programs.html#prog-kids">Kids</a></li><li><a href="programs.html#prog-adults">Adults</a></li><li><a href="programs.html#prog-family">Family</a></li><li><a href="programs.html#prog-competitive">Competitive</a></li></ul></div>
       <div class="footer-col footer-news"><h4>Newsletter</h4><p>Swim tips and offers, straight to your inbox.</p>
         <form class="news-form" id="newsletterForm"><input type="email" placeholder="Your email address" required><button type="submit"><i class="fa-solid fa-paper-plane"></i></button></form>
       </div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Stackly Swimming School. All rights reserved.</span><div><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms</a><a href="contact.html">Contact</a></div></div>
+    <div class="footer-bottom"><span>© 2026 Stackly Swimming School. All rights reserved.</span><div><a href="404.html">Privacy Policy</a><a href="404.html">Terms</a></div></div>
   </div>
 </footer>
 
@@ -128,5 +130,51 @@
 
 <script src="assets/js/main.js"></script>
 <script src="assets/js/forms.js"></script>
+<script>
+(function(){
+  document.querySelectorAll('.cs-field').forEach(function(field){
+    var trigger=field.querySelector('.cs-trigger');
+    var hidden=field.querySelector('select');
+    var valSpan=field.querySelector('.cs-val');
+    if(!trigger||!hidden) return;
+    trigger.addEventListener('click',function(e){
+      e.stopPropagation();
+      var was=field.classList.contains('cs-open');
+      document.querySelectorAll('.cs-field.cs-open').forEach(function(f){f.classList.remove('cs-open');});
+      if(!was) field.classList.add('cs-open');
+    });
+    field.querySelectorAll('.cs-item:not(.cs-placeholder)').forEach(function(item){
+      item.addEventListener('click',function(e){
+        e.stopPropagation();
+        hidden.value=item.getAttribute('data-value');
+        valSpan.textContent=item.textContent.trim();
+        field.classList.remove('cs-open');
+        field.classList.add('cs-selected');
+        field.querySelectorAll('.cs-item').forEach(function(i){i.classList.remove('cs-active');});
+        item.classList.add('cs-active');
+        hidden.dispatchEvent(new Event('change'));
+      });
+    });
+    trigger.addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();trigger.click();}
+      if(e.key==='Escape') field.classList.remove('cs-open');
+    });
+  });
+  document.addEventListener('click',function(){
+    document.querySelectorAll('.cs-field.cs-open').forEach(function(f){f.classList.remove('cs-open');});
+  });
+  document.querySelectorAll('form').forEach(function(form){
+    form.addEventListener('reset',function(){
+      form.querySelectorAll('.cs-field').forEach(function(field){
+        var valSpan=field.querySelector('.cs-val');
+        var ph=field.querySelector('.cs-placeholder');
+        if(valSpan&&ph) valSpan.textContent=ph.textContent.trim();
+        field.classList.remove('cs-selected','cs-open');
+        field.querySelectorAll('.cs-item').forEach(function(i){i.classList.remove('cs-active');});
+      });
+    });
+  });
+})();
+</script>
 </body>
 </html>

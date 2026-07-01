@@ -179,17 +179,17 @@
 /* Brand column */
 .footer-brand .brand{color:#fff;}
 .footer-brand p{
-  color:#9FC8E0;margin-top:10px;font-size:13.5px;line-height:1.65;
+  color:#9FC8E0;margin-top:10px;font-size:15px;line-height:1.65;
 }
 
 /* Social icons */
 .footer-social{display:flex;gap:9px;margin-top:16px;}
 .footer-social a{
-  width:34px;height:34px;border-radius:50%;
+  width:40px;height:40px;border-radius:50%;
   background:rgba(255,255,255,.07);
   border:1px solid rgba(255,255,255,.1);
   display:flex;align-items:center;justify-content:center;
-  color:#BFE3F5;font-size:13px;
+  color:#BFE3F5;font-size:15px;
   transition:all .3s var(--ease);
 }
 .footer-social a:hover{
@@ -199,7 +199,7 @@
 
 /* Column headings */
 .footer-col h4{
-  color:#fff;font-size:11.5px;font-weight:800;
+  color:#fff;font-size:13px;font-weight:800;
   letter-spacing:.12em;text-transform:uppercase;
   margin-bottom:16px;
   display:flex;align-items:center;gap:8px;
@@ -218,7 +218,7 @@
 }
 .footer-col ul li a{
   display:inline-flex;align-items:center;gap:8px;
-  color:#8BBFD8;font-size:14px;font-weight:500;
+  color:#8BBFD8;font-size:15px;font-weight:500;
   transition:color .25s var(--ease),padding-left .25s;
 }
 .footer-col ul li a::before{
@@ -231,7 +231,7 @@
 
 /* Newsletter column */
 .footer-news p{
-  color:#9FC8E0;font-size:13.5px;line-height:1.6;margin-bottom:14px;
+  color:#9FC8E0;font-size:15px;line-height:1.6;margin-bottom:14px;
 }
 .news-form{
   display:flex;
@@ -259,10 +259,10 @@
   display:flex;justify-content:space-between;align-items:center;
   flex-wrap:wrap;gap:8px;
   padding:12px 0;
-  font-size:12px;color:#4A7290;
+  font-size:14px;color:#4A7290;
   position:relative;z-index:2;
 }
-.footer-bottom a{color:#5C87A0;margin-left:14px;transition:color .25s;}
+.footer-bottom a{color:#5C87A0;margin-left:14px;font-size:14px;transition:color .25s;}
 .footer-bottom a:hover{color:var(--c-accent);}
 
 /* Responsive */
@@ -277,11 +277,52 @@
   .footer-social{gap:8px;}
 }
 
+/* ---------- Custom Select Dropdown ---------- */
+.cs-field{position:relative;}
+.cs-field .cs-trigger{
+  width:100%;box-sizing:border-box;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:18px 18px 18px 46px;border-radius:var(--r-sm);
+  border:1.5px solid var(--c-border);background:rgba(255,255,255,.05);
+  font-size:14.5px;color:var(--c-text-soft);
+  cursor:pointer;transition:all .3s var(--ease);user-select:none;
+}
+.cs-field.cs-open .cs-trigger,.cs-field .cs-trigger:focus{
+  border-color:var(--c-accent);box-shadow:0 0 0 4px rgba(0,194,255,.12);
+  background:rgba(255,255,255,.08);outline:none;
+}
+.cs-field.has-error .cs-trigger{border-color:#EF4444;}
+.cs-field.cs-selected .cs-trigger{color:var(--c-text);}
+.cs-arrow{color:var(--c-accent);transition:transform .3s var(--ease);flex-shrink:0;font-size:11px;}
+.cs-field.cs-open .cs-arrow{transform:rotate(180deg);}
+.cs-list{
+  position:absolute;top:calc(100% + 3px);left:0;right:0;
+  background:var(--c-card);border:1.5px solid var(--c-border);
+  border-radius:var(--r-sm);z-index:500;
+  list-style:none;padding:0;margin:0;
+  box-shadow:0 8px 28px rgba(0,0,0,.55);
+  display:none;overflow:hidden;
+}
+.cs-field.cs-open .cs-list{display:block;}
+.cs-item{
+  padding:13px 18px;font-size:14.5px;color:var(--c-text);
+  cursor:pointer;transition:background .18s,color .18s;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.cs-item:last-child{border-bottom:none;}
+.cs-placeholder{color:var(--c-text-soft);cursor:default;pointer-events:none;}
+.cs-item:not(.cs-placeholder):hover{background:rgba(0,194,255,.1);color:var(--c-accent);}
+.cs-item.cs-active{color:var(--c-accent);background:rgba(0,194,255,.06);}
+@media (max-width:480px){
+  .cs-field .cs-trigger{padding:15px 15px 15px 40px;font-size:14px;}
+  .cs-item{padding:12px 15px;font-size:14px;}
+}
+
 /* ---------- Forms ---------- */
-.field{position:relative;margin-bottom:26px;}
+.field{position:relative;margin-bottom:26px;max-width:100%;}
 .field i.field-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--c-primary);font-size:16px;z-index:2;}
 .field input,.field select,.field textarea{
-  width:100%;padding:18px 18px 18px 46px;border-radius:var(--r-sm);
+  width:100%;max-width:100%;box-sizing:border-box;padding:18px 18px 18px 46px;border-radius:var(--r-sm);
   border:1.5px solid var(--c-border);background:rgba(255,255,255,.05);
   font-size:14.5px;color:var(--c-text);outline:none;transition:all .3s var(--ease);
 }

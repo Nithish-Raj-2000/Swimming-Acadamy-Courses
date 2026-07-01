@@ -254,6 +254,23 @@
 }
 .news-form button:hover{opacity:.88;}
 
+.news-perks{
+  list-style:none;margin:16px 0 0;padding:0;
+  display:flex;flex-direction:column;gap:9px;
+}
+.news-perks li{
+  display:flex;align-items:center;gap:9px;
+  font-size:13px;color:#7AAFC8;
+}
+.news-perks li i{color:var(--c-accent);font-size:11px;flex-shrink:0;}
+
+.news-note{
+  display:flex;align-items:center;gap:7px;
+  font-size:12px !important;color:#4A7290 !important;
+  margin-top:14px !important;margin-bottom:0 !important;
+}
+.news-note i{font-size:11px;color:#4A7290;}
+
 /* Footer bottom bar */
 .footer-bottom{
   display:flex;justify-content:space-between;align-items:center;

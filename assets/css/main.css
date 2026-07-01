@@ -79,7 +79,6 @@ body{
   background:var(--c-bg);
   color:var(--c-text);
   line-height:1.65;
-  overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
   transition:background .4s var(--ease),color .4s var(--ease);
 }
